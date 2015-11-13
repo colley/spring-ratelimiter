@@ -16,24 +16,14 @@ import org.apache.log4j.Logger;
  * @author mayuanchao
  * @version 1.0
  */
-public class SimpleRateTimeLimiterInvoker implements RateTimeLimiterInvoker<Object> {
+public class SimpleRateTimeLimiterInvoker implements RateTimeLimiterInvoker {
 	protected final Logger logger = Logger.getLogger(getClass());
 
 	@Override
-	public Object handler(Exception exc, String retMessage) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("handler has exception");
-		}
-		System.err.println("handler not exception");
+	public <T> T invokehandler(Object param) {
+		
 		return null;
 	}
 
-	@Override
-	public Object handler() {
-		if (logger.isDebugEnabled()) {
-			logger.debug("handler not exception");
-		}
-		System.err.println("handler not exception");
-		return null;
-	}
+	
 }

@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package com.github.ailing.ratimelimiter;
+package com.github.ailing.ratetimelimiter;
 
 import org.springframework.stereotype.Service;
 

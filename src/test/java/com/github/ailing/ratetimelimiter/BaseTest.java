@@ -3,7 +3,7 @@
  * All rights reserved.
  * $Id$
  */
-package com.github.ailing.ratimelimiter;
+package com.github.ailing.ratetimelimiter;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;

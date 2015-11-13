@@ -17,13 +17,11 @@ import java.util.concurrent.TimeUnit;
  * @author mayuanchao
  * @version 1.0
  */
-public interface TimeLimiterExecutor<T> {
-	public void setExecutorServiceProvider(ExecutorServiceProvider executor);
-
-	public T invokeByLimitTime(String serviceName, RateTimeServiceCallBack<T> callBack);
+public interface TimeLimiterExecutor {
+	public <T> T invokeByLimitTime(String serviceName, RateTimeServiceCallBack<T> callBack);
 
 	public boolean isLimitOpen(String serviceName);
 
-	public T callWithTimeout(Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit,
+	public <T> T callWithTimeout(ExecutorServiceProvider executorServiceProvider,Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit,
 		boolean amInterruptible) throws Exception;
 }

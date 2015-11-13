@@ -5,7 +5,7 @@
  * Date: Aug 29, 2013
  * History: 
  */
-package com.github.ailing.ratimelimiter;
+package com.github.ailing.ratetimelimiter;
 
 import java.io.Serializable;
 

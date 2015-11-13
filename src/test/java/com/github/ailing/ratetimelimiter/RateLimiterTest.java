@@ -3,7 +3,7 @@
  * All rights reserved.
  * $Id$
  */
-package com.github.ailing.ratimelimiter;
+package com.github.ailing.ratetimelimiter;
 
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.junit.ContiPerfRule;
@@ -33,7 +33,7 @@ public class RateLimiterTest extends BaseTest {
 		rateLimiterMock = (RateLimiterMock)getBean("rateLimiterMock");
 	}
 
-	@PerfTest(invocations = 30000, threads = 200)
+	@PerfTest(invocations = 1000, threads = 10)
 	@Test
 	public void testRate() {
 		rateLimiterMock.rateLimitTest("ok~~~~~~~~~~");

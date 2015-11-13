@@ -18,18 +18,8 @@
 	
 	
 	<bean id="rateTimeLimiterAspect" class="com.github.ailing.ratetimelimiter.RateTimeLimiterAspect">
-		<property name="configurerProvider" ref="simpleRatimelimitConfigurerProvider" />
-		<property name="rateTimeServiceExecutor" ref="rateTimeServiceExecutorAdapter" />
 	</bean>
 	
-	<bean id="rateTimeServiceExecutorAdapter" class="com.github.ailing.ratetimelimiter.adapter.RateTimeServiceExecutorAdapter">
-		<property name="timeLimiterExecutor" ref="simpleTimeLimiterExecutor"></property>
-		<property name="rateLimiterExecutor" ref="simpleRateLimiterExecutor"></property>
-	</bean>
-	
-	<bean id="simpleTimeLimiterExecutor" class="com.github.ailing.ratetimelimiter.adapter.executor.SimpleTimeLimiterExecutor">
-		<property name="executorServiceProvider" ref="simpleExecutorServiceProvider"></property>
-	</bean>
 	
 	<!-- 开启自动扫描 -->
 	<context:component-scan base-package="com.github.ailing.ratetimelimiter">

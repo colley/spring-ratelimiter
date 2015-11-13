@@ -15,7 +15,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.github.ailing.ratetimelimiter.YdtRateLimiter;
-import com.github.ailing.ratetimelimiter.adapter.RateTimeLimiterInvoker;
 import com.github.ailing.ratetimelimiter.exception.RatimeLimiterException;
 
 /**
@@ -68,26 +67,5 @@ public class RateTimeConfigurerFactory {
 	public YdtRateLimiter getYhdRateLimiter(String serviceName){
 		RateTimeConfigurer ratimeConfigurer =  getRatimeConfigurer(serviceName);
 		return ratimeConfigurer.getConfigProvider().getYdtRateLimiter();
-	}
-	
-	public RateTimeLimiterInvoker<?> createLimiterInvoker(String serviceName) {
-		RateTimeLimiterInvoker<?> invoker = null;
-		RateTimeConfigurer ratimeConfigurer = getRatimeConfigurer(serviceName);
-
-		if (ratimeConfigurer.getClazzInvoker() == null) {
-			ratimeConfigurer.setClazzInvoker(SimpleRateTimeLimiterInvoker.class);
-		}
-
-		try {
-			invoker = ratimeConfigurer.getClazzInvoker().newInstance();
-		} catch (InstantiationException e) {
-			logger.error("Rate and timer Invoker instance not exits", e);
-			throw new RatimeLimiterException("RatimeLimiterInvoker class Required");
-		} catch (IllegalAccessException e) {
-			logger.error("Rate and timer Invoker instance not exits", e);
-			throw new RatimeLimiterException("RatimeLimiterInvoker class Required");
-		}
-
-		return invoker;
 	}
 }
