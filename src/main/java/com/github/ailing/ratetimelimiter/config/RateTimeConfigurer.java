@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2015
  * All rights reserved.
- * $Id: RateTimeConfigurer.java 1492119 2015-11-12 09:52:20Z mayuanchao $
+ * $Id: RateTimeConfigurer.java 1492827 2015-11-13 08:07:36Z mayuanchao $
  */
 package com.github.ailing.ratetimelimiter.config;
 
@@ -104,7 +104,7 @@ public class RateTimeConfigurer implements java.io.Serializable {
 			logger.warn("["+this.serviceName+"] current PermitsPerSecond is "+ rateConfig.getPermitsPerSecond() +", glt Integer.MAX_VALUE");
 			return false; 
 		}
-		
+				
 		//开关是否打开,否设置特定时间
 		if (isLimitOpen && (cronExpression != null)) {
 			Date currentDate = Calendar.getInstance().getTime();
@@ -203,7 +203,7 @@ public class RateTimeConfigurer implements java.io.Serializable {
 	 * 刷新配置参数
 	 */
 	public void refresh() {
-		RateTimeConfigurer newConfig = configProvider.create(this.serviceName, this.aspectProvider);
+		RateTimeConfigurer newConfig = configProvider.create(this.serviceName, this.aspectProvider,this.rateTimeClazzBean.getClazzInvoker());
 
 		if (newConfig != null) {
 			long newInterval = newConfig.getIntervalTime();

@@ -1,10 +1,11 @@
 /*
  * Copyright (c) 2015
  * All rights reserved.
- * $Id: AbstractRatimelimitConfigurerProvider.java 1492119 2015-11-12 09:52:20Z mayuanchao $
+ * $Id: AbstractRatimelimitConfigurerProvider.java 1492811 2015-11-13 08:01:26Z mayuanchao $
  */
 package com.github.ailing.ratetimelimiter.config;
 
+import com.github.ailing.ratetimelimiter.adapter.RateTimeLimiterInvoker;
 
 /**
  *简单封装配置信息的提供者
@@ -16,14 +17,18 @@ package com.github.ailing.ratetimelimiter.config;
 public abstract class AbstractRatimelimitConfigurerProvider implements RateTimelimitConfigurerProvider {
 	
 	@Override
-	public RateTimeConfigurer create(String serviceName,AspectRateTimeProvider aspectProvider) {
+	public RateTimeConfigurer create(String serviceName,AspectRateTimeProvider aspectProvider,Class<? extends RateTimeLimiterInvoker> invoker) {
 		AspectRateTime aspect = aspectProvider.create(serviceName);
 		RateTimeConfigurer rateTimeConfigurer = new RateTimeConfigurer();
+		if(aspect!=null && invoker!=null){
+			aspect.setInvoker(invoker);
+		}
 		if(aspect!=null){
 			rateTimeConfigurer = config(aspect);
 		}
 		// 可以读库去更新
 		updateConfig(rateTimeConfigurer);
+		
 		return rateTimeConfigurer;
 	}
 

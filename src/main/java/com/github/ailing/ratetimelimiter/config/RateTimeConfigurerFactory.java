@@ -1,11 +1,9 @@
 /*
  * Copyright (c) 2015
  * All rights reserved.
- * $Id: RateTimeConfigurerFactory.java 1492119 2015-11-12 09:52:20Z mayuanchao $
+ * $Id: RateTimeConfigurerFactory.java 1492811 2015-11-13 08:01:26Z mayuanchao $
  */
 package com.github.ailing.ratetimelimiter.config;
-
-import static com.github.ailing.ratetimelimiter.util.PreconditionUtil.checkNotNull;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,7 +13,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.github.ailing.ratetimelimiter.YdtRateLimiter;
+import com.github.ailing.ratetimelimiter.adapter.RateTimeLimiterInvoker;
 import com.github.ailing.ratetimelimiter.exception.RatimeLimiterException;
+import static com.github.ailing.ratetimelimiter.util.PreconditionUtil.checkNotNull;
 
 /**
  *不同的服务有不同的配置  一个服务对应一个配置
@@ -36,13 +36,13 @@ public class RateTimeConfigurerFactory {
 	 * @return
 	 * @throws RatimeLimiterException
 	 */
-	public void config(String serviceName, RateTimelimitConfigurerProvider configProvider,AspectRateTimeProvider aspectProvider)
+	public void config(String serviceName, RateTimelimitConfigurerProvider configProvider,AspectRateTimeProvider aspectProvider,Class<? extends RateTimeLimiterInvoker> invoker)
 		throws RatimeLimiterException {
 		RateTimeConfigurer ratimeConfigure = ratimeConfigurers.get(serviceName);
 
 		if (ratimeConfigure == null) {
 			checkNotNull(configProvider, "expected a non-null RatimelimitConfigurerProvider");
-			ratimeConfigure = configProvider.create(serviceName,aspectProvider);
+			ratimeConfigure = configProvider.create(serviceName,aspectProvider,invoker);
 
 			if (ratimeConfigure != null) {
 				//更新配置接口

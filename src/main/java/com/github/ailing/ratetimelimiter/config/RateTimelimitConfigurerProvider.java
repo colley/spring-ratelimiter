@@ -6,6 +6,7 @@
 package com.github.ailing.ratetimelimiter.config;
 
 import com.github.ailing.ratetimelimiter.YdtRateLimiter;
+import com.github.ailing.ratetimelimiter.adapter.RateTimeLimiterInvoker;
 
 /**
  *原始配置信息提供者
@@ -15,7 +16,7 @@ import com.github.ailing.ratetimelimiter.YdtRateLimiter;
  * @version 1.0
  */
 public interface RateTimelimitConfigurerProvider {
-	public RateTimeConfigurer create(String serviceName, AspectRateTimeProvider aspectProvider);
+	public RateTimeConfigurer create(String serviceName, AspectRateTimeProvider aspectProvider,Class<? extends RateTimeLimiterInvoker> invoker);
 
 	public void updateConfig(RateTimeConfigurer rateTimeConfigurer);
 	
