@@ -12,11 +12,7 @@ package com.github.ailing.ratetimelimiter.adapter;
  * @author mayuanchao
  * @version 1.0
  */
-public interface RateTimeServiceExecutor<T> {
-	T execute(String serviceName, RateTimeServiceCallBack<T> callBack)
+public interface RateTimeServiceExecutor {
+	<T> T execute(String serviceName, RateTimeServiceCallBack<T> callBack)
 		throws Exception;
-
-	public void setRateLimiterExecutor(RateLimiterExecutor rateExecutor);
-
-	public void setTimeLimiterExecutor(TimeLimiterExecutor<T> timeExecutor);
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.github.ailing.ratetimelimiter.YdtRateLimiter;
 import com.github.ailing.ratetimelimiter.adapter.RateLimiterExecutor;
@@ -28,7 +28,7 @@ import com.github.ailing.ratetimelimiter.config.RateTimeConfigurerFactory;
  * @author mayuanchao
  * @version 1.0
  */
-@Service("simpleRateLimiterExecutor")
+@Component
 public class RateLimiterExecutorImpl implements RateLimiterExecutor {
 	private static Map<String, YdtRateLimiter> allRateLimiter = Collections.synchronizedMap(new HashMap<String, YdtRateLimiter>());
 	

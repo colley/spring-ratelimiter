@@ -6,7 +6,7 @@
 
 package com.github.ailing.ratetimelimiter.adapter.executor;
 
-import com.github.ailing.ratetimelimiter.adapter.ExecutorServiceProvider;
+import org.springframework.stereotype.Component;
 
 /**
  * 简单的超时机制实现类，可以自己实现
@@ -16,10 +16,7 @@ import com.github.ailing.ratetimelimiter.adapter.ExecutorServiceProvider;
  * @version 1.0
  */
 
-public class SimpleTimeLimiterExecutor extends AbstractTimeLimiterExecutor<Object> {
+@Component
+public class SimpleTimeLimiterExecutor extends AbstractTimeLimiterExecutor {
 	
-	@Override
-	public void setExecutorServiceProvider(ExecutorServiceProvider executor) {
-		this.executor = executor;
-	}
 }

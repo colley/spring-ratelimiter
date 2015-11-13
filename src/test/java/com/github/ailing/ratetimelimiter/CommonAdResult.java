@@ -3,7 +3,7 @@
  * All rights reserved.
  * $Id: CommonAdResult.java 1487805 2015-11-05 02:57:00Z mayuanchao $
  */
-package com.github.ailing.ratimelimiter;
+package com.github.ailing.ratetimelimiter;
 
 /**
  *

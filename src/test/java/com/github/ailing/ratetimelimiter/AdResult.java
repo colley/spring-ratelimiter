@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.github.ailing.ratimelimiter;
+package com.github.ailing.ratetimelimiter;
 
 import java.util.List;
 

@@ -44,7 +44,7 @@ public class AspectRateTime implements java.io.Serializable {
 	 * 超时或者超过限流数出来类
 	 * 默认为 SimpleRateTimeLimiterInvoker
 	 */
-	private Class<?extends RateTimeLimiterInvoker<?>> invoker = SimpleRateTimeLimiterInvoker.class;
+	private Class<?extends RateTimeLimiterInvoker> invoker = SimpleRateTimeLimiterInvoker.class;
 	/**
 	 * 超时机制开关
 	 */
@@ -72,6 +72,25 @@ public class AspectRateTime implements java.io.Serializable {
 	 */
 	private boolean refreshCfg = true;
 	
+	private Class<?extends RateTimelimitConfigurerProvider> configurer;	
+	
+	
+	public Class<? extends RateTimelimitConfigurerProvider> getConfigurer() {
+		if(configurer == null){
+			configurer = SimpleRatimelimitConfigurerProvider.class;
+		}
+		return configurer;
+	}
+
+
+	public void setConfigurer(Class<? extends RateTimelimitConfigurerProvider> configurer) {
+		this.configurer = configurer;
+	}
+
+	public AspectRateTime(String serviceName,Class<?extends RateTimeLimiterInvoker> invoker) {
+		this.serviceName = serviceName;
+		this.invoker = invoker;
+	}
 	
 	public AspectRateTime(String serviceName) {
 		this.serviceName = serviceName;
@@ -136,11 +155,11 @@ public class AspectRateTime implements java.io.Serializable {
 		this.timerCronExpr = timerCronExpr;
 	}
 
-	public Class<?extends RateTimeLimiterInvoker<?>> getInvoker() {
+	public Class<?extends RateTimeLimiterInvoker> getInvoker() {
 		return invoker;
 	}
 
-	public void setInvoker(Class<?extends RateTimeLimiterInvoker<?>> invoker) {
+	public void setInvoker(Class<?extends RateTimeLimiterInvoker> invoker) {
 		this.invoker = invoker;
 	}
 

@@ -5,16 +5,14 @@
  */
 package com.github.ailing.ratetimelimiter.config;
 
-import com.github.ailing.ratetimelimiter.adapter.RateTimeLimiterInvoker;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Timer;
 
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.quartz.CronExpression;
 import org.springframework.beans.BeanUtils;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
 
 /**
  * 各配置信息成员，包括自己刷新，定时等
@@ -84,12 +82,10 @@ public class RateTimeConfigurer implements java.io.Serializable {
 	 */
 	private RateTimelimitConfigurerProvider configProvider;
 
-	/**
-	 * 限流和超时机制的处理类
-	 */
-	private Class<?extends RateTimeLimiterInvoker<?>> clazzInvoker;
+	private RateTimeClassBean rateTimeClazzBean;
 	
-	
+
+
 	/**
 	 * 判断是否开启限流措施
 	 * @return
@@ -98,15 +94,17 @@ public class RateTimeConfigurer implements java.io.Serializable {
 		boolean isLimitOpen = rateConfig.isRelease();
 		int startDelay = rateConfig.getStartDelay();
 		CronExpression cronExpression = rateConfig.getCronExpression();
+		
+		if (isLimitOpen && (cronExpression == null)) {
+			return true;
+		}
+		
 		//如果设置的TPS为 Integer.MAX_VALUE 就取消限流
 		if(rateConfig.getPermitsPerSecond()>=Integer.MAX_VALUE){
 			logger.warn("["+this.serviceName+"] current PermitsPerSecond is "+ rateConfig.getPermitsPerSecond() +", glt Integer.MAX_VALUE");
 			return false; 
 		}
-		if (isLimitOpen && (cronExpression == null)) {
-			return true;
-		}
-
+		
 		//开关是否打开,否设置特定时间
 		if (isLimitOpen && (cronExpression != null)) {
 			Date currentDate = Calendar.getInstance().getTime();
@@ -225,14 +223,15 @@ public class RateTimeConfigurer implements java.io.Serializable {
 
 	/*************************************get and set method *****************************************/
 	
-	public Class<?extends RateTimeLimiterInvoker<?>> getClazzInvoker() {
-		return clazzInvoker;
+	public RateTimeClassBean getRateTimeClazzBean() {
+		return rateTimeClazzBean;
 	}
 
-	public void setClazzInvoker(Class<?extends RateTimeLimiterInvoker<?>> clazzInvoker) {
-		this.clazzInvoker = clazzInvoker;
-	}
 
+	public void setRateTimeClazzBean(RateTimeClassBean rateTimeClazzBean) {
+		this.rateTimeClazzBean = rateTimeClazzBean;
+	}
+	
 	public Timer getTimer() {
 		return timer;
 	}

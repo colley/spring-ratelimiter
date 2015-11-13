@@ -13,8 +13,6 @@ package com.github.ailing.ratetimelimiter.adapter;
  * @author mayuanchao
  * @version 1.0
  */
-public interface RateTimeLimiterInvoker<T> {
-	T handler(Exception exc, String retMesssage);
-
-	T handler();
+public interface RateTimeLimiterInvoker {
+	<T> T invokehandler(Object param);
 }

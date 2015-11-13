@@ -5,13 +5,15 @@
  */
 package com.github.ailing.ratetimelimiter;
 
-import com.github.ailing.ratetimelimiter.adapter.RateTimeLimiterInvoker;
-import com.github.ailing.ratetimelimiter.config.SimpleRateTimeLimiterInvoker;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import com.github.ailing.ratetimelimiter.adapter.RateTimeLimiterInvoker;
+import com.github.ailing.ratetimelimiter.config.RateTimelimitConfigurerProvider;
+import com.github.ailing.ratetimelimiter.config.SimpleRateTimeLimiterInvoker;
+import com.github.ailing.ratetimelimiter.config.SimpleRatimelimitConfigurerProvider;
 
 /**
  * 注解描述
@@ -80,5 +82,11 @@ public @interface RateTimeLimit {
 	 * 限流或者开启超时机制处理类
 	 * @return
 	 */
-	public abstract Class<?extends RateTimeLimiterInvoker<?>> invoker() default SimpleRateTimeLimiterInvoker.class;
+	public abstract Class<?extends RateTimeLimiterInvoker> invoker() default SimpleRateTimeLimiterInvoker.class;
+	
+	/**
+	 * 原始数据提供类
+	 * @return
+	 */
+	public abstract Class<?extends RateTimelimitConfigurerProvider> configurer() default SimpleRatimelimitConfigurerProvider.class;
 }
