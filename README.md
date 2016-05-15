@@ -12,7 +12,7 @@ TPS rate limit
 <!-- 配置注解类  -->
 <!-- 限流超时机制开始  -->
 	 <bean id="rateTimeLimiterAspect" class="com.ailing.ratetimelimiter.RateTimeLimiterAspect">
-		<property name="configurerProvider" ref="ydtRatimelimitConfigurerProvider" />
+		<property name="configurerProvider" ref="hsRatimelimitConfigurerProvider" />
 		<property name="rateTimeServiceExecutor" ref="rateTimeServiceExecutorAdapter" />
 	</bean>
 	
