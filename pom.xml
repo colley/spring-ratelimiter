@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.spring-ratelimiter</groupId>
+  <groupId>com.hs.spring-ratelimiter</groupId>
   <artifactId>spring-ratelimiter</artifactId>
+  <packaging>jar</packaging> 
   <version>0.0.1-SNAPSHOT</version>
   
   
   <properties>
-  	<hessian.version>3.1.6</hessian.version>
-  	<commons-lang.version>2.6</commons-lang.version>
+  		<commons-lang.version>2.6</commons-lang.version>
 		<commons-logging.version>1.1.1</commons-logging.version>
 		<commons-io.version>2.4</commons-io.version>
 		<commons-pool.version>1.5.4</commons-pool.version>
@@ -16,51 +16,50 @@
 		<commons-jexl.version>1.0</commons-jexl.version>
 		<spring.version>3.2.0.RELEASE</spring.version>
 		<servlet-api.version>2.5</servlet-api.version>
+		<junit.version>4.10</junit.version>
+		<hscommon-utils.version>0.0.1</hscommon-utils.version>
+		<contiperf.version>2.1.0</contiperf.version>
+		<guava.version>18.0</guava.version>
+		<quartz.version>1.8.6</quartz.version>
   </properties>
   <dependencies>
   
-  <dependency>
-  	<groupId>com.github.common-utils</groupId> 
-  	<artifactId>common-utils</artifactId> 
-  	<version>0.0.1-SNAPSHOT</version>
-  </dependency>
+	<dependency>
+		<groupId>com.hs.common-utils</groupId>
+ 		<artifactId>hscommon-utils</artifactId>
+ 		<version>${hscommon-utils.version}</version>
+ 	</dependency>
   
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.10</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     
-    	<dependency>
-		 	<groupId>org.databene</groupId>
-			<artifactId>contiperf</artifactId>
-			<version>2.1.0</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet-api.version}</version>
-		</dependency>
-    
-    <dependency>
-			<groupId>com.caucho</groupId>
-			<artifactId>hessian</artifactId>
-			<version>${hessian.version}</version>
+   	<dependency>
+	 	<groupId>org.databene</groupId>
+		<artifactId>contiperf</artifactId>
+		<version>${contiperf.version}</version>
+		<scope>test</scope>
 	</dependency>
 	
+	<dependency>
+		<groupId>org.quartz-scheduler</groupId>
+		<artifactId>quartz</artifactId>
+		<version>${quartz.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>${servlet-api.version}</version>
+	</dependency>
+   
 	<dependency>
 	  <groupId>com.google.guava</groupId>
 	  <artifactId>guava</artifactId>
-	  <version>18.0</version>
-	</dependency>
-	
-	<dependency>
-	  <groupId>quartz</groupId>
-	  <artifactId>quartz</artifactId>
-	  <version>1.8.4</version>
+	  <version>${guava.version}</version>
 	</dependency>
 
 	<dependency>

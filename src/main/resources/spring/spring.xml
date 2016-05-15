@@ -17,12 +17,12 @@
 		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
 	
-	<bean id="rateTimeLimiterAspect" class="com.github.ailing.ratetimelimiter.RateTimeLimiterAspect">
+	<bean id="rateTimeLimiterAspect" class="com.ailing.ratetimelimiter.RateTimeLimiterAspect">
 	</bean>
 	
 	
 	<!-- 开启自动扫描 -->
-	<context:component-scan base-package="com.github.ailing.ratetimelimiter">
+	<context:component-scan base-package="com.ailing.ratetimelimiter">
 	</context:component-scan>
 	
 	<!-- 启用注解 -->
