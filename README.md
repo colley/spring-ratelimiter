@@ -11,17 +11,17 @@ TPS rate limit
 二、配置 spring配置
 <!-- 配置注解类  -->
 <!-- 限流超时机制开始  -->
-	 <bean id="rateTimeLimiterAspect" class="com.newheight.advertise.dolphin.common.ratetimelimiter.RateTimeLimiterAspect">
+	 <bean id="rateTimeLimiterAspect" class="com.ailing.ratetimelimiter.RateTimeLimiterAspect">
 		<property name="configurerProvider" ref="ydtRatimelimitConfigurerProvider" />
 		<property name="rateTimeServiceExecutor" ref="rateTimeServiceExecutorAdapter" />
 	</bean>
 	
-	<bean id="rateTimeServiceExecutorAdapter" class="com.newheight.advertise.dolphin.common.ratetimelimiter.adapter.RateTimeServiceExecutorAdapter">
+	<bean id="rateTimeServiceExecutorAdapter" class="com.ailing.ratetimelimiter.adapter.RateTimeServiceExecutorAdapter">
 		<property name="timeLimiterExecutor" ref="simpleTimeLimiterExecutor"></property>
 		<property name="rateLimiterExecutor" ref="simpleRateLimiterExecutor"></property>
 	</bean>
 	
-	<bean id="simpleTimeLimiterExecutor" class="com.newheight.advertise.dolphin.common.ratetimelimiter.adapter.executor.SimpleTimeLimiterExecutor">
+	<bean id="simpleTimeLimiterExecutor" class="com.ailing.ratetimelimiter.adapter.executor.SimpleTimeLimiterExecutor">
 		<property name="executorServiceProvider" ref="simpleExecutorServiceProvider"></property>
 	</bean> 
 	
